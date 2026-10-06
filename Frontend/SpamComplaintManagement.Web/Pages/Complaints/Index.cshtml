@@ -1,0 +1,76 @@
+
+<div class="filter-card">
+
+    <form method="get" class="filter-form">
+
+        <div class="filter-group">
+            <label for="Search">Search</label>
+            <input type="text"
+                   id="Search"
+                   name="Search"
+                   value="@Model.Search"
+                   placeholder="Complaint ID, number, sender..." />
+        </div>
+
+        <div class="filter-group">
+            <label for="Status">Status</label>
+
+            <select id="Status" name="Status">
+                <option value="">All Status</option>
+
+                <option value="Submitted"
+                        selected="@(Model.Status == "Submitted")">
+                    Submitted
+                </option>
+
+                <option value="In Progress"
+                        selected="@(Model.Status == "In Progress")">
+                    In Progress
+                </option>
+
+                <option value="Resolved"
+                        selected="@(Model.Status == "Resolved")">
+                    Resolved
+                </option>
+
+                <option value="Rejected"
+                        selected="@(Model.Status == "Rejected")">
+                    Rejected
+                </option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="SpamType">Spam Type</label>
+
+            <select id="SpamType" name="SpamType">
+                <option value="">All Types</option>
+
+                <option value="SMS"
+                        selected="@(Model.SpamType == "SMS")">
+                    SMS
+                </option>
+
+                <option value="Call"
+                        selected="@(Model.SpamType == "Call")">
+                    Call
+                </option>
+
+                <option value="Email"
+                        selected="@(Model.SpamType == "Email")">
+                    Email
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" class="filter-button">
+            Search / Filter
+        </button>
+
+        <a href="/Complaints" class="clear-button">
+            Clear
+        </a>
+
+    </form>
+
+</div>

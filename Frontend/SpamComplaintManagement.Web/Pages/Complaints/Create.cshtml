@@ -1,0 +1,240 @@
+
+@page
+@model SpamComplaintManagement.Web.Pages.Complaints.CreateModel
+
+<div class="complaint-page">
+
+    <div class="complaint-header">
+        <div>
+            <h1>Report Spam</h1>
+            <p>Submit a complaint about a spam call or message.</p>
+        </div>
+
+        <a href="/Dashboard" class="back-button">Dashboard</a>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
+    {
+        <div class="success-message">
+            <strong>@Model.SuccessMessage</strong>
+
+            @if (!string.IsNullOrWhiteSpace(Model.ComplaintId))
+            {
+                <div class="complaint-id">
+                    Your Complaint ID:
+                    <strong>@Model.ComplaintId</strong>
+                </div>
+
+                <p>
+                    Please save this Complaint ID for tracking your complaint.
+                </p>
+
+                <a href="/Complaints/Track?complaintId=@Model.ComplaintId"
+                   class="track-button">
+                    Track Complaint
+                </a>
+            }
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="error-message">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    <div class="complaint-card">
+
+        <h2>Spam Complaint Details</h2>
+
+        <form method="post">
+
+            <div class="form-group">
+                <label for="SpamType">Spam Type</label>
+
+                <select id="SpamType"
+                        name="SpamType"
+                        class="form-control"
+                        required>
+                    <option value="">Select spam type</option>
+
+                    <option value="Spam Call"
+                            selected="@(Model.SpamType == "Spam Call")">
+                        Spam Call
+                    </option>
+
+                    <option value="Spam SMS"
+                            selected="@(Model.SpamType == "Spam SMS")">
+                        Spam SMS
+                    </option>
+
+                    <option value="Email"
+                            selected="@(Model.SpamType == "Email")">
+                        Email
+                    </option>
+
+                    <option value="Other"
+                            selected="@(Model.SpamType == "Other")">
+                        Other
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="SpamNumber">Spam Number</label>
+
+                <input type="text"
+                       id="SpamNumber"
+                       name="SpamNumber"
+                       value="@Model.SpamNumber"
+                       class="form-control"
+                       placeholder="Enter phone number or email"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="Sender">Sender</label>
+
+                <input type="text"
+                       id="Sender"
+                       name="Sender"
+                       value="@Model.Sender"
+                       class="form-control"
+                       placeholder="Enter sender name"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="Details">Complaint Details</label>
+
+                <textarea id="Details"
+                          name="Details"
+                          class="form-control"
+                          rows="6"
+                          placeholder="Describe the spam communication..."
+                          required>@Model.Details</textarea>
+            </div>
+
+            <button type="submit" class="submit-button">
+                Submit Complaint
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+<style>
+    .complaint-page {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .complaint-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .complaint-header h1 {
+        margin-bottom: 8px;
+    }
+
+    .complaint-header p {
+        color: #687386;
+        margin: 0;
+    }
+
+    .back-button {
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        background: #f0f2f7;
+        color: #172033;
+    }
+
+    .complaint-card {
+        background: white;
+        padding: 30px;
+        border-radius: 14px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    .complaint-card h2 {
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #dfe3ea;
+        border-radius: 8px;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #5b35d5;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 8px;
+        background: #5b35d5;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .success-message {
+        background: #eaf8ef;
+        border: 1px solid #b9e5c6;
+        color: #236b38;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .complaint-id {
+        margin-top: 12px;
+        font-size: 18px;
+    }
+
+    .track-button {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 9px 15px;
+        background: #236b38;
+        color: white;
+        text-decoration: none;
+        border-radius: 7px;
+    }
+
+    .error-message {
+        background: #fdecec;
+        border: 1px solid #f2b8b8;
+        color: #a32929;
+        padding: 14px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+</style>
+

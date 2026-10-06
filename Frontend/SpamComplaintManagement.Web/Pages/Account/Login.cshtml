@@ -1,0 +1,182 @@
+
+@page
+@model SpamComplaintManagement.Web.Pages.Account.LoginModel
+
+<div class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-header">
+            <h1>Login</h1>
+            <p>Sign in to your Spam Complaint Management account.</p>
+        </div>
+
+        @if (Request.Query["registered"] == "true")
+        {
+            <div class="success-message">
+                Registration successful. Please login with your credentials.
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <div class="error-message">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <form method="post">
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email"
+                       type="email"
+                       placeholder="Enter your email"
+                       autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password"
+                       type="password"
+                       placeholder="Enter your password"
+                       autocomplete="current-password" />
+            </div>
+
+            <button type="submit" class="login-button">
+                Login
+            </button>
+
+        </form>
+
+        <div class="register-section">
+            <span>Don't have an account?</span>
+
+            <a href="/Account/Register" class="register-link">
+                Register
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    .login-page {
+        min-height: calc(100vh - 72px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        background: #f6f8fb;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 430px;
+        background: white;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+        margin: 0 0 10px;
+        font-size: 30px;
+    }
+
+    .login-header p {
+        margin: 0;
+        color: #687386;
+        font-size: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #303642;
+    }
+
+    .form-group input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        border: 1px solid #d9dde5;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: #5b35d5;
+        box-shadow: 0 0 0 3px rgba(91, 53, 213, 0.1);
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 8px;
+        background: #5b35d5;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .login-button:hover {
+        background: #4928b5;
+    }
+
+    .register-section {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e8ee;
+        text-align: center;
+        color: #687386;
+        font-size: 14px;
+    }
+
+    .register-link {
+        margin-left: 5px;
+        color: #5b35d5;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .register-link:hover {
+        text-decoration: underline;
+    }
+
+    .error-message {
+        margin-bottom: 20px;
+        padding: 12px 14px;
+        border-radius: 8px;
+        background: #fdecec;
+        border: 1px solid #f2b8b8;
+        color: #a32929;
+        font-size: 14px;
+    }
+
+    .success-message {
+        margin-bottom: 20px;
+        padding: 12px 14px;
+        border-radius: 8px;
+        background: #eaf7ee;
+        border: 1px solid #b8dfc2;
+        color: #23733b;
+        font-size: 14px;
+    }
+
+</style>

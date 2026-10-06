@@ -1,0 +1,93 @@
+@page
+@model SpamComplaintManagement.Web.Pages.IndexModel
+
+<div class="home-page">
+
+    <div class="welcome-card">
+
+        <h1>Spam Complaint Management</h1>
+
+        <p>
+            Manage and track your spam complaints easily.
+        </p>
+
+        <div class="actions">
+
+            <a href="/Complaints" class="primary-button">
+                My Complaints
+            </a>
+
+            <a href="/Complaints/Create" class="secondary-button">
+                Report Spam
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+    .home-page {
+        max-width: 1100px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .welcome-card {
+        background: white;
+        border-radius: 16px;
+        padding: 60px 40px;
+        text-align: center;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, .08);
+    }
+
+    .welcome-card h1 {
+        margin-bottom: 15px;
+        font-size: 32px;
+    }
+
+    .welcome-card p {
+        color: #687386;
+        margin-bottom: 30px;
+        font-size: 17px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .primary-button {
+        background: #5b35d5;
+        color: white;
+    }
+
+    .primary-button:hover {
+        background: #4928b5;
+        color: white;
+    }
+
+    .secondary-button {
+        background: #eeeafe;
+        color: #5b35d5;
+    }
+
+    .secondary-button:hover {
+        background: #ddd7fa;
+        color: #4928b5;
+    }
+
+</style>

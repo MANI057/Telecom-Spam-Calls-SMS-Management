@@ -1,0 +1,45 @@
+@page "{id}"
+@model DetailsModel
+@{
+    ViewData["Title"] = "Complaint Details";
+}
+@if (Model.Complaint == null)
+{
+    <div class="alert error">Complaint not found.</div>
+}
+else
+{
+<div class="page-head">
+    <div>
+        <span class="eyebrow">COMPLAINT TRACKING</span>
+        <h1>@Model.Complaint.ComplaintId</h1>
+        <p>Track the progress of your spam complaint.</p>
+    </div>
+    <span class="status large">@Model.Complaint.Status</span>
+</div>
+
+<div class="details-grid">
+    <div class="panel">
+        <h2>Complaint details</h2>
+        <dl>
+            <dt>Type</dt><dd>@Model.Complaint.SpamType</dd>
+            <dt>Spam number</dt><dd>@Model.Complaint.SpamNumber</dd>
+            <dt>Sender / caller</dt><dd>@Model.Complaint.Sender</dd>
+            <dt>Communication</dt><dd>@Model.Complaint.CommunicationDetails</dd>
+        </dl>
+    </div>
+    <div class="panel">
+        <h2>Status history</h2>
+        <div class="timeline">
+        @foreach (var item in Model.Complaint.History)
+        {
+            <div class="timeline-item">
+                <strong>@item.Status</strong>
+                <span>@item.UpdatedAt.ToLocalTime().ToString("dd MMM yyyy, hh:mm tt")</span>
+            </div>
+        }
+        </div>
+        <p class="muted">Status stages supported by the Epic: Submitted, Under Investigation, Action Taken, and Resolved.</p>
+    </div>
+</div>
+}
